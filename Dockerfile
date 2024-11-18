@@ -8,6 +8,10 @@ WORKDIR /app
 COPY . .
 
 # Install any needed packages specified in requirements.txt
+# Install dependencies in a virtual environment
+RUN python -m venv /venv
+ENV PATH="/venv/bin:$PATH"
+RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Make port 5000 available to the world outside this container
